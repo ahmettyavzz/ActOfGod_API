@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 @UtilityClass
 public class EmailValidationUtil {
-    public boolean isEmailValid(String email) {
+    public boolean validate(String email) {
         {
             if (email == null || email.isEmpty()) {
                 return false;

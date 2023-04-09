@@ -7,6 +7,7 @@ import edu.kocaeli.actofgod_api.exception.GeneralException;
 import edu.kocaeli.actofgod_api.model.User;
 import edu.kocaeli.actofgod_api.repository.UserRepository;
 import edu.kocaeli.actofgod_api.util.EmailValidationUtil;
+import edu.kocaeli.actofgod_api.util.PhoneNumberValidationUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ public class UserService {
 
     public UserDto add(UserDto userDto) {
         checkEmailValidation(userDto.getEmail());
+        checkPhoneValidation(userDto.getPhoneNumber());
         var forSave = userConverter.toEntity(userDto);
         forSave.setCreatedDate(new Date());
         return userConverter.toDto(userRepository.save(forSave));
@@ -38,6 +40,7 @@ public class UserService {
 
     public UserDto update(Long id, UserDto dto) {
         checkEmailValidation(dto.getEmail());
+        checkPhoneValidation(dto.getPhoneNumber());
         var forUpdateUser = getUserIfFound(id);
         forUpdateUser.setFirstName(dto.getFirstName());
         forUpdateUser.setLastName(dto.getLastName());
@@ -54,8 +57,13 @@ public class UserService {
     }
 
     private void checkEmailValidation(String email) {
-        if (!EmailValidationUtil.isEmailValid(email)) {
+        if (!EmailValidationUtil.validate(email)) {
             throw new GeneralException(ErrorStatusCode.INVALID_EMAIL);
+        }
+    }
+    private void checkPhoneValidation(String phone) {
+        if (!PhoneNumberValidationUtil.validate(phone)) {
+            throw new GeneralException(ErrorStatusCode.INVALID_PHONE);
         }
     }
 
