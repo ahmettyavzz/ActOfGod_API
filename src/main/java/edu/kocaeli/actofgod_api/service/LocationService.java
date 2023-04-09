@@ -39,7 +39,7 @@ public class LocationService {
         forUpdateLocation.setName(dto.getName());
         forUpdateLocation.setLatitude(dto.getLatitude());
         forUpdateLocation.setLongitude(dto.getLongitude());
-        forUpdateLocation.setCapacity(forUpdateLocation.getCapacity());
+        forUpdateLocation.setCapacity(dto.getCapacity());
         forUpdateLocation.setUpdatedDate(new Date());
         return locationConverter.toDto(locationRepository.save(forUpdateLocation));
     }
