@@ -21,9 +21,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     public UserDto add(UserDto userDto) {
-        if (!EmailValidationUtil.isEmailValid(userDto.getEmail())) {
-            throw new GeneralException(ErrorStatusCode.INVALID_EMAIL);
-        }
+        checkEmailValidation(userDto.getEmail());
         var forSave = userConverter.toEntity(userDto);
         forSave.setCreatedDate(new Date());
         return userConverter.toDto(userRepository.save(forSave));
@@ -39,6 +37,7 @@ public class UserService {
     }
 
     public UserDto update(Long id, UserDto dto) {
+        checkEmailValidation(dto.getEmail());
         var forUpdateUser = getUserIfFound(id);
         forUpdateUser.setFirstName(dto.getFirstName());
         forUpdateUser.setLastName(dto.getLastName());
@@ -54,5 +53,10 @@ public class UserService {
         );
     }
 
+    private void checkEmailValidation(String email) {
+        if (!EmailValidationUtil.isEmailValid(email)) {
+            throw new GeneralException(ErrorStatusCode.INVALID_EMAIL);
+        }
+    }
 
 }
