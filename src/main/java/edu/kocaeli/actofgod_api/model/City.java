@@ -12,17 +12,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "locations")
-public class Location extends BaseEntity {
+@Table(name = "cities")
+public class City extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Double latitude;
-    private Double longitude;
-    private Long capacity;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "district_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "city")
     private District district;
-
 }
