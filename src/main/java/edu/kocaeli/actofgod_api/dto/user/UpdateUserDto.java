@@ -1,4 +1,4 @@
-package edu.kocaeli.actofgod_api.dto;
+package edu.kocaeli.actofgod_api.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class UserDto {
+public class UpdateUserDto {
     private String firstName;
     private String lastName;
     private String phoneNumber;
