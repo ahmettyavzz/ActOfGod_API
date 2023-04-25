@@ -1,15 +1,11 @@
 package edu.kocaeli.actofgod_api.controller;
 
-import edu.kocaeli.actofgod_api.dto.UserDto;
+import edu.kocaeli.actofgod_api.dto.user.UpdateUserDto;
+import edu.kocaeli.actofgod_api.dto.user.UserDto;
+import edu.kocaeli.actofgod_api.dto.user.CreateUserDto;
 import edu.kocaeli.actofgod_api.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,8 +16,8 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public UserDto add(@RequestBody UserDto userDto) {
-        return userService.add(userDto);
+    public UserDto add(@RequestBody CreateUserDto createUserDto) {
+        return userService.add(createUserDto);
     }
 
     @GetMapping("/{id}")
@@ -35,8 +31,12 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public UserDto update(@PathVariable Long id, @RequestBody UserDto dto) {
+    public UserDto update(@PathVariable Long id, @RequestBody UpdateUserDto dto) {
         return userService.update(id, dto);
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        userService.delete(id);
+    }
 }

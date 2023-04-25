@@ -1,7 +1,9 @@
 package edu.kocaeli.actofgod_api.service;
 
 import edu.kocaeli.actofgod_api.converter.UserConverter;
-import edu.kocaeli.actofgod_api.dto.UserDto;
+import edu.kocaeli.actofgod_api.dto.user.CreateUserDto;
+import edu.kocaeli.actofgod_api.dto.user.UpdateUserDto;
+import edu.kocaeli.actofgod_api.dto.user.UserDto;
 import edu.kocaeli.actofgod_api.exception.ErrorStatusCode;
 import edu.kocaeli.actofgod_api.exception.GeneralException;
 import edu.kocaeli.actofgod_api.model.User;
@@ -21,10 +23,10 @@ public class UserService {
     private final UserConverter userConverter;
     private final UserRepository userRepository;
 
-    public UserDto add(UserDto userDto) {
-        checkEmailValidation(userDto.getEmail());
-        checkPhoneValidation(userDto.getPhoneNumber());
-        var forSave = userConverter.toEntity(userDto);
+    public UserDto add(CreateUserDto createUserDto) {
+        checkEmailValidation(createUserDto.getEmail());
+        checkPhoneValidation(createUserDto.getPhoneNumber());
+        var forSave = userConverter.toEntity(createUserDto);
         forSave.setCreatedDate(new Date());
         return userConverter.toDto(userRepository.save(forSave));
     }
@@ -38,7 +40,7 @@ public class UserService {
         return userRepository.findAll().stream().map(userConverter::toDto).collect(Collectors.toList());
     }
 
-    public UserDto update(Long id, UserDto dto) {
+    public UserDto update(Long id, UpdateUserDto dto) {
         checkEmailValidation(dto.getEmail());
         checkPhoneValidation(dto.getPhoneNumber());
         var forUpdateUser = getUserIfFound(id);
@@ -67,4 +69,7 @@ public class UserService {
         }
     }
 
+    public void delete(Long id) {
+        userRepository.deleteById(id);
+    }
 }

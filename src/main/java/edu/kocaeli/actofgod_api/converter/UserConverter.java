@@ -1,6 +1,7 @@
 package edu.kocaeli.actofgod_api.converter;
 
-import edu.kocaeli.actofgod_api.dto.UserDto;
+import edu.kocaeli.actofgod_api.dto.user.CreateUserDto;
+import edu.kocaeli.actofgod_api.dto.user.UserDto;
 import edu.kocaeli.actofgod_api.model.User;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -12,6 +13,10 @@ public class UserConverter {
     private final ModelMapper modelMapper;
 
     public User toEntity(UserDto dto) {
+        return modelMapper.map(dto, User.class);
+    }
+
+    public User toEntity(CreateUserDto dto) {
         return modelMapper.map(dto, User.class);
     }
 
