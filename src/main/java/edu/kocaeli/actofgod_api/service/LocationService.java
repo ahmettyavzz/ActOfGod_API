@@ -1,7 +1,9 @@
 package edu.kocaeli.actofgod_api.service;
 
 import edu.kocaeli.actofgod_api.converter.LocationConverter;
-import edu.kocaeli.actofgod_api.dto.LocationDto;
+import edu.kocaeli.actofgod_api.dto.location.CreateLocationDto;
+import edu.kocaeli.actofgod_api.dto.location.LocationDto;
+import edu.kocaeli.actofgod_api.dto.location.UpdateLocationDto;
 import edu.kocaeli.actofgod_api.exception.ErrorStatusCode;
 import edu.kocaeli.actofgod_api.exception.GeneralException;
 import edu.kocaeli.actofgod_api.model.Location;
@@ -19,8 +21,8 @@ public class LocationService {
     private final LocationRepository locationRepository;
     private final LocationConverter locationConverter;
 
-    public LocationDto add(LocationDto locationDto) {
-        var forSave = locationConverter.toEntity(locationDto);
+    public LocationDto add(CreateLocationDto createLocationDto) {
+        var forSave = locationConverter.toEntity(createLocationDto);
         forSave.setCreatedDate(new Date());
         return locationConverter.toDto(locationRepository.save(forSave));
     }
@@ -34,7 +36,7 @@ public class LocationService {
         return locationRepository.findAll().stream().map(locationConverter::toDto).collect(Collectors.toList());
     }
 
-    public LocationDto update(Long id, LocationDto dto) {
+    public LocationDto update(Long id, UpdateLocationDto dto) {
         var forUpdateLocation = getLocationIfFound(id);
         forUpdateLocation.setName(dto.getName());
         forUpdateLocation.setLatitude(dto.getLatitude());
@@ -48,5 +50,9 @@ public class LocationService {
         return locationRepository.findById(id).orElseThrow(
                 () -> new GeneralException(ErrorStatusCode.LOCATION_NOT_FOUND_BY_ID)
         );
+    }
+
+    public void delete(Long id) {
+        locationRepository.deleteById(id);
     }
 }
