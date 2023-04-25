@@ -1,4 +1,4 @@
-package edu.kocaeli.actofgod_api.dto;
+package edu.kocaeli.actofgod_api.dto.location;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
