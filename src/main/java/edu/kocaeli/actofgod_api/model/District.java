@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -17,10 +18,13 @@ public class District extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "city_id", referencedColumnName = "id")
+
+    @ManyToOne
+    @JoinColumn(name = "city_id")
     private City city;
-    @OneToOne(mappedBy = "district")
-    private Location location;
+
+    @OneToMany(mappedBy = "district")
+    private List<Location> locations;
 }

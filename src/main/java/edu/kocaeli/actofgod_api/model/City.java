@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -17,7 +18,9 @@ public class City extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
-    @OneToOne(mappedBy = "city")
-    private District district;
+
+    @OneToMany(mappedBy = "city")
+    private List<District> districts;
 }

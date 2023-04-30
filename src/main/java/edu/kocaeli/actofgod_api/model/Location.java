@@ -17,12 +17,13 @@ public class Location extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
     private Double latitude;
     private Double longitude;
     private Long capacity;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "district_id", referencedColumnName = "id")
-    private District district;
 
+    @ManyToOne
+    @JoinColumn(name = "district_id")
+    private District district;
 }
