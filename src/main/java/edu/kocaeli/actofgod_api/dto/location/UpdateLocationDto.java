@@ -12,4 +12,5 @@ public class UpdateLocationDto {
     private Double latitude;
     private Double longitude;
     private Long capacity;
+    private Long districtId;
 }

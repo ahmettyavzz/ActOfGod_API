@@ -23,5 +23,4 @@ public class LocationConverter {
     public LocationDto toDto(Location entity) {
         return modelMapper.map(entity, LocationDto.class);
     }
-
 }
