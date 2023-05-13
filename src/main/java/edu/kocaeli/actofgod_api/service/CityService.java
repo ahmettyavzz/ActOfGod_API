@@ -33,7 +33,7 @@ public class CityService {
     }
 
     public List<CityDto> getAll() {
-        return cityRepository.findAll().stream().map(cityConverter::toDto).collect(Collectors.toList());
+        return cityRepository.findAllByOrderByIdAsc().stream().map(cityConverter::toDto).collect(Collectors.toList());
     }
 
     public CityDto update(Long id, UpdateCityDto dto) {

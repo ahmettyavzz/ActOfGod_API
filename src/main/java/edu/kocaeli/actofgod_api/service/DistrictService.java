@@ -33,7 +33,7 @@ public class DistrictService {
     }
 
     public List<DistrictDto> getAll() {
-        return districtRepository.findAll().stream().map(districtConverter::toDto).collect(Collectors.toList());
+        return districtRepository.findAllByOrderByIdAsc().stream().map(districtConverter::toDto).collect(Collectors.toList());
     }
 
     public DistrictDto update(Long id, UpdateDistrictDto dto) {

@@ -33,7 +33,7 @@ public class LocationService {
     }
 
     public List<LocationDto> getAll() {
-        return locationRepository.findAll().stream().map(locationConverter::toDto).collect(Collectors.toList());
+        return locationRepository.findAllByOrderByIdAsc().stream().map(locationConverter::toDto).collect(Collectors.toList());
     }
 
     public LocationDto update(Long id, UpdateLocationDto dto) {
