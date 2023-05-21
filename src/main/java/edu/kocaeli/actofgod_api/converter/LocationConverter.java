@@ -12,10 +12,6 @@ import org.springframework.stereotype.Component;
 public class LocationConverter {
     private final ModelMapper modelMapper;
 
-    public Location toEntity(LocationDto dto) {
-        return modelMapper.map(dto, Location.class);
-    }
-
     public Location toEntity(CreateLocationDto dto) {
         return modelMapper.map(dto, Location.class);
     }
