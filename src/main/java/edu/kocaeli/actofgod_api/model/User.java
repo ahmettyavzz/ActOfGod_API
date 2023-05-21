@@ -23,7 +23,7 @@ public class User extends BaseEntity {
     private Long id;
     private String firstName;
     private String lastName;
-    private String phoneNumber;
-    private String email;
-    private String password;
+    private String birthYear;
+    private String tcNo;
+    private String androidId;
 }

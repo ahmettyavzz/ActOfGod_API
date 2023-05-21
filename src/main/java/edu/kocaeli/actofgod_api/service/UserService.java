@@ -46,8 +46,6 @@ public class UserService {
         var forUpdateUser = getUserIfFound(id);
         forUpdateUser.setFirstName(dto.getFirstName());
         forUpdateUser.setLastName(dto.getLastName());
-        forUpdateUser.setEmail(dto.getEmail());
-        forUpdateUser.setPhoneNumber(dto.getPhoneNumber());
         forUpdateUser.setUpdatedDate(new Date());
         return userConverter.toDto(userRepository.save(forUpdateUser));
     }
