@@ -14,8 +14,8 @@ import java.util.List;
 public class DistrictController {
     private final DistrictService districtService;
 
-    @GetMapping
-    public List<DistrictDto> getAll() {
-        return districtService.getAll();
+    @GetMapping("/getByCityId/{id}")
+    public List<DistrictDto> getByCityId(@PathVariable Long id) {
+        return districtService.getByCityId(id);
     }
 }

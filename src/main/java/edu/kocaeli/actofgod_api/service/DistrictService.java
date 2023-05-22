@@ -15,7 +15,7 @@ public class DistrictService {
     private final DistrictRepository districtRepository;
     private final DistrictConverter districtConverter;
 
-    public List<DistrictDto> getAll() {
-        return districtRepository.findAllByOrderByIdAsc().stream().map(districtConverter::toDto).collect(Collectors.toList());
+    public List<DistrictDto> getByCityId(Long id) {
+        return districtRepository.findByCityId(id).stream().map(districtConverter::toDto).collect(Collectors.toList());
     }
 }
