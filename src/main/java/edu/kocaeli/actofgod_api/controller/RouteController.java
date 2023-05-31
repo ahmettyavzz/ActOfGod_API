@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @CrossOrigin
 @RestController
-@RequestMapping("/v1/road")
+@RequestMapping("/v1/route")
 public class RouteController {
     private final RouteService routeService;
 
