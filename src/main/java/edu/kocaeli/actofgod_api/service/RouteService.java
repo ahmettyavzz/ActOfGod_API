@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 public class RouteService {
     private final RestTemplate restTemplate;
 
-    public RouteDto calculateRoad(RouteApiParameterDto routeApiParameterDto) {
+    public RouteDto calculateRoute(RouteApiParameterDto routeApiParameterDto) {
         String apiUrl = "https://maps.google.com/maps/api/directions/json?origin="
                 + routeApiParameterDto.getOriginLatitude() + ","
                 + routeApiParameterDto.getOriginLongitude()

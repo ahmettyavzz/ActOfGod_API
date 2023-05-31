@@ -14,7 +14,7 @@ public class RouteController {
     private final RouteService routeService;
 
     @PostMapping
-    public RouteDto calculateRoad(@RequestBody RouteApiParameterDto routeApiParameterDto) {
-        return routeService.calculateRoad(routeApiParameterDto);
+    public RouteDto calculateRoute(@RequestBody RouteApiParameterDto routeApiParameterDto) {
+        return routeService.calculateRoute(routeApiParameterDto);
     }
 }
