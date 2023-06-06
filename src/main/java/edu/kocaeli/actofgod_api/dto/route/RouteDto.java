@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class RouteDto {
-    private String distance;
-    private String duration;
+    private int distance;
+    private int duration;
 }

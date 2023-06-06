@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class UpdateUserDto {
     private String firstName;
     private String lastName;
-    private String phoneNumber;
-    private String email;
+    private String birthYear;
+    private String tcNo;
+    private String androidId;
 }

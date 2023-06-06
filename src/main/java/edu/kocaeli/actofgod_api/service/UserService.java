@@ -24,8 +24,6 @@ public class UserService {
     private final UserRepository userRepository;
 
     public UserDto add(CreateUserDto createUserDto) {
-        checkEmailValidation(createUserDto.getEmail());
-        checkPhoneValidation(createUserDto.getPhoneNumber());
         var forSave = userConverter.toEntity(createUserDto);
         forSave.setCreatedDate(new Date());
         return userConverter.toDto(userRepository.save(forSave));
@@ -41,8 +39,6 @@ public class UserService {
     }
 
     public UserDto update(Long id, UpdateUserDto dto) {
-        checkEmailValidation(dto.getEmail());
-        checkPhoneValidation(dto.getPhoneNumber());
         var forUpdateUser = getUserIfFound(id);
         forUpdateUser.setFirstName(dto.getFirstName());
         forUpdateUser.setLastName(dto.getLastName());
@@ -54,17 +50,6 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(
                 () -> new GeneralException(ErrorStatusCode.USER_NOT_FOUND_BY_ID)
         );
-    }
-
-    private void checkEmailValidation(String email) {
-        if (!EmailValidationUtil.validate(email)) {
-            throw new GeneralException(ErrorStatusCode.INVALID_EMAIL);
-        }
-    }
-    private void checkPhoneValidation(String phone) {
-        if (!PhoneNumberValidationUtil.validate(phone)) {
-            throw new GeneralException(ErrorStatusCode.INVALID_PHONE);
-        }
     }
 
     public void delete(Long id) {

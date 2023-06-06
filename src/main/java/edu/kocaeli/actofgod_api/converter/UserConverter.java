@@ -12,12 +12,14 @@ import org.springframework.stereotype.Component;
 public class UserConverter {
     private final ModelMapper modelMapper;
 
-    public User toEntity(UserDto dto) {
-        return modelMapper.map(dto, User.class);
-    }
-
     public User toEntity(CreateUserDto dto) {
-        return modelMapper.map(dto, User.class);
+        User user = new User();
+        user.setFirstName(dto.getFirstName());
+        user.setLastName(dto.getLastName());
+        user.setBirthYear(dto.getBirthYear());
+        user.setTcNo(dto.getTcNo());
+        user.setAndroidId(dto.getAndroidId());
+        return user;
     }
 
     public UserDto toDto(User entity) {
