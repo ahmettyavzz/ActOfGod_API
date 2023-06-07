@@ -28,6 +28,11 @@ To build and run the project, follow these steps:
 
 * Clone the repository: `git clone https://github.com/ahmettyavzz/ActOfGod_API.git`
 * Navigate to the project directory
+* service/RouteService on line 20;
+```java
++ "&mode=walking&sensor=false&key=YOUR_API_KEY";
+```
+Put your Google Maps API Key instead of "YOUR_API_KEY"
 * Build the project: mvn clean install
 * Run the project: mvn spring-boot:run
 
