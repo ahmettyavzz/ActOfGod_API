@@ -16,6 +16,7 @@
   * Json Path
   * Rest Template
 * PostgreSQL
+* Google Maps Directions API
  
 
 ## Getting Started
